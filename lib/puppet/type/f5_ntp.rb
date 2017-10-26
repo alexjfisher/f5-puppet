@@ -11,7 +11,7 @@ require File.expand_path(File.join(File.dirname(__FILE__),'..','..','puppet/prop
 Puppet::Type.newtype(:f5_ntp) do
   @doc = 'Sets the system NTP on the BIG-IP system.'
 
-  apply_to_device
+  apply_to_device if Facter.value(:url).nil?
   ensurable
 
   newparam(:name) do
